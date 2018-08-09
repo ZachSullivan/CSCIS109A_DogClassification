@@ -1,37 +1,28 @@
-## Welcome to GitHub Pages
+---
+title: Overview:
+notebook: Report-Homepage.ipynb
+nav_include: 1
+---
 
-You can use the [editor on GitHub](https://github.com/ZachSullivan/CSCIS109A_DogClassification/edit/master/index.md) to maintain and preview the content for your website in Markdown files.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+## AC209A Data Science Final project
+Jinwon Chung and Kate Zhou
+Group #55
 
-### Markdown
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+### Motivation:
 
-```markdown
-Syntax highlighted code block
+Predicting and classifying human motion using wearable sensors have a wide variety of applications. These applications span from development of entertainment technology to assistive devices. One particularly interesting use case is in combining an gait classification model with soft exoskeletons in order to determine the best types of assistance at different walking or running conditions. In particular, the necessary assistance to the hip joint is highly dependent on the walking slope. In this project, we aim to develop a walking slope classifer.
 
-# Header 1
-## Header 2
-### Header 3
+Currently the hip-only soft exoskeleton suit from Harvard Biodesign Lab uses foot IMUs to estimate the slope of the ground; however, it would be preferred to remove this sensor in the suit to reduce suit complexity and donning time. There are other parameters the system collects, such as torso orientation and thigh angles, that could be used to predict walking slope. Our project aims to explore this possibility and build the best predictor possible using the data available.
 
-- Bulleted
-- List
 
-1. Numbered
-2. List
+### Problem Statement:
+How to predict walking slope using Hip-Only exosuit data with no foot IMU?
+1. solve as a classification problem of classifying flat ground, uphill or downhill. 
+2. solve as a regression problem to estimate the exact walking slope and a classification problem with 7 classes at discrete slopes. Compare the performance of the two methods.
 
-**Bold** and _Italic_ and `Code` text
+![IMUs](/Images/Jon.jpg)
 
-[Link](url) and ![Image](src)
-```
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
 
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/ZachSullivan/CSCIS109A_DogClassification/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
