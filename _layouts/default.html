@@ -5,11 +5,13 @@
   
   </head>
   <body>
-    <h2>{{ site.data.samplelist.docs_list_title }}</h2>
-      <ul>
-         {% for item in site.data.samplelist.docs %}
-            <li><a href="{{ item.url }}" alt="{{ item.title }}">{{ item.title }}</a></li>
-         {% endfor %}
-      </ul>
+     <header class="page-header" role="banner">
+      <h1 class="project-name">{{ site.title | default: site.github.repository_name }}</h1>
+      <h2 class="project-tagline">{{ site.description | default: site.github.project_tagline }}</h2>
+        <a href="{{ site.github.repository_url }}" class="btn">View on GitHub</a>
+
+        <a href="{{ site.github.Report-IntroductionEDA }}" class="btn">Introduction and EDA</a>
+
+</header>
   </body>
 </html>
