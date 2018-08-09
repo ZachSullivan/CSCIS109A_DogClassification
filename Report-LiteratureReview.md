@@ -9,7 +9,7 @@ title: Literature Review and Related Work
 
 
 
-### 1. “Dog breed classification using part localization” - Jiongxin Liu, Anglo Kanazawa, David Jacobs, Peter Belhumeur, Columbia University & University of Maryland (2012)
+### 1. “Dog breed classification using part localization” - Jiongxin Liu, Anglo Kanazawa, David Jacobs, Peter Belhumeur, Columbia University & University of Maryland (2012) [link](http://legacydirs.umiacs.umd.edu/~kanazawa/papers/eccv2012_dog_final.pdf)
 
 This Paper introduces a process for fine grain feature detection, in successfully classifying dog breeds with 67% accuracy. The paper’s approach leverages automatic face detection, localization of eyes and nose relative to the dog’s face, attempts to align the face and extract a grayscale scale-invariant feature transform (SIFT). Furthermore, the paper’s approach leverages the use of a color histogram to extract additional SIFT features.
 
