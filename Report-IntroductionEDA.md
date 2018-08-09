@@ -1,6 +1,5 @@
 ---
 title: Introduction and EDA
-nav_include: 2
 ---
 
 ## Contents
