@@ -72,7 +72,7 @@ out_df = shuffle(out_df)
 
 out_df.head()
 ```
-![combined_data_df](/Images/combined_data_df.png)
+![combined_data_df](/Images/combined_data_df 2.34.56 PM.png)
 
 ### 2) Principal Component Analysis (PCA)
 
