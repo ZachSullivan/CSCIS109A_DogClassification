@@ -32,6 +32,8 @@ Boston Bull Knn         |  German Shepherd Knn
 :-------------------------:|:-------------------------:
 ![Bull_Hist_Intersect_knn](/Images/Bull_Hist_Intersect_knn.png)  |  ![GerShep_Hist_Intersect_knn](/Images/GerShep_Hist_Intersect_knn.png)
 
+Boston Bull & German Shepherd Histogram       |  
+:------------------s-------:
 ![GerBull_Hists](/Images/GerBull_Hists.png)
 
 Boston Bull Intersection Scores           |  German Shepherd Intersection Scores
