@@ -81,6 +81,19 @@ After resizing all image files, we attempted a reduction in the dimensions of ou
 PCA is a way to find the each feature’s variability ratio to overall features variability. It extracts the feature which is the most variable among a given set and is orthogonal to the features already extracted. With the help of PCA, we can extract features that explain a certain level of variability. We used PCA to obtain features which explain more than 90% of the feature set variance. The number of features we gained is 141, which reduced the dimension enormously, compared to the original data of 16875 features.
 
 ```python
+    pca = PCA(n_components=2)
+    pca.fit(X_train)
+    X_train_pca = pca.transform(X_train)
+
+    X_train_pca_df = pd.DataFrame(X_train_pca, columns=["pca1", "pca2"])
+    X_train_pca_df["Class"] = y_train.values
+    sns.lmplot(x = "pca1", y = "pca2", hue="Class", data = X_train_pca_df, fit_reg = False, legend = False, palette = 'bwr')
+    plt.title("Top Two Principal Components")
+    plt.legend();
+```
+![Top Two Principal Components](/Images/Top_Two_Principal_Components.png)
+
+```python
     pca = PCA()
     X = pca.fit_transform(out_df.drop('Class', axis=1))
     a, num = 0, 0
@@ -186,38 +199,12 @@ def DfAppend_Vals(dataFrame, matrix, columns):
 
 In the following classification models, we determine success through the comparison of model accuracy scores. In an attempt to improve our model accuracies, we performed hyper-parameters tuning through either the gridsearchcv method, or manually. 
 
-### 1) K-Nearest Neighbors (Single Image Size)
- 
-In generating the corresponding dataframe for images of common 100 by 100 pixel size, results in a dataset with close to 30,000 features (PCA required, likely suffers from overfitting and high dimensionality).
-
-![data_df_30000Dim](/Images/data_df_30000Dim.png) 
-
-```python
-for k in range(1, 10):
-    knnreg = knn(n_neighbors=k) # Create KNN model
-    knnreg.fit(X_train, y_train) # Fit the model to training data
-    score_train = knnreg.score(X_test, y_test) # Calculate R^2 score
-    train_Scores.append(score_train)
-
-plt.plot(range(1, 10), train_Scores,'o-')
-
-plt.xlabel('k')
-plt.ylabel('R-Squared')
-plt.title("KNN Intersection Scores for Two Breeds")
-plt.show()
-```
-
-![2Breeds_knn_r2](/Images/2Breeds_knn_r2.png) 
-
-
-
 ### 1) K-Nearest Neighbors (Varying Image Size)
 K-Nearest Neighbors Classification (Knn) classifies data points based on the length-metrics from centroids. In this model, we set two neighbors, Euclidean metrics(by default) and ran the model on multiple unifed image sizes of 25, 50, 75 pixel (identical width by height) dimensions. 
 
 Example Image Import without any Bounding Box         |  Scaled Import Image with a Bounding Box
 :-------------------------:|:-------------------------:
 ![BullDog_import](/Images/BullDog_import.png)  |  ![BullDog_import_Scaled](/Images/BullDog_import_Scaled.png)
-
 
 The accuracy scores obtained were 0.5445544554455446, 0.4752475247524752, and 0.6237623762376238 respetively. Our impression of these findings, is that as the image dimensions grow in size (thus the more information it contains) conversly produces a higher accuracy score, thus an increase in image size corresponds to an increase in model accuracy. This conclusion is reinforced by the accuracy scores obtained, showcasing that largest image dimensions demonstrated higher accuracy scores than one featuring smallest dimensions. 
 
