@@ -1,5 +1,5 @@
 ---
-title: Introduction and EDA
+title: Exploratory Data Analysis
 ---
 
 ## Contents
@@ -7,15 +7,7 @@ title: Introduction and EDA
 *  
 {: toc}
 
-
-
-## 1. Introduction and Description of Data
-
-### 1) 
-
-### 2) 
-
-## 2. Exploratory Data Analysis
+## 1. Exploratory Data Analysis
 
 ### 1) Histogram Intersections
 
