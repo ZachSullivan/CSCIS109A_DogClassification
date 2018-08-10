@@ -23,6 +23,20 @@ In our preliminary exploratory data analysis, we took the average value for each
 
 In plotting color histograms for both German Shepherd and Boston Bull breeds, we took in an array of source images, each with the same depth, provided a singular grayscale channel for the according image, and produced a histogram using the OpenCV library method (calcHist). Using the compareHist function, with CV_COMP_INTERSECT method, we then compared these histograms againsts a training histogram to evaluate their score. Additionally, our group further modified the comparison algorithm to first normalize the histogram before performing a comparison. 
 
+We begin by importing the breed images from the specified folder.
+
+```python
+def load_images_from_folder(folder):
+    images = []
+    for filename in os.listdir(folder):
+        img = cv2.imread(os.path.join(folder,filename))
+        if img is not None:
+            #img = cv2.resize(img, (500, 500)) 
+            img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+            images.append(img)
+    return images
+```
+
 Boston Bull Knn R2           |  German Shepherd Knn R2
 :-------------------------:|:-------------------------:
 ![Bull_knn_r2](/Images/Bull_knn_r2.png)  |  ![GerShep_knn_r2](/Images/GerShep_knn_r2.png)
