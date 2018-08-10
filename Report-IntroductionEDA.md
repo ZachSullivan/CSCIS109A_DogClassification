@@ -80,10 +80,104 @@ for i in range(0, len(Bulldog_imgs)):
 
     hist2 = cv2.calcHist(Bulldog_imgs[i],[0],None,[256],[0,256])
     hist2 = cv2.normalize(hist2,hist2).flatten()
-    Bull_inter_sc.append(cv2.compareHist(trainingHist_B, hist2, cv2.HISTCMP_INTERSECT))    
+    Bull_inter_sc.append(cv2.compareHist(trainingHist_B, hist2, cv2.HISTCMP_INTERSECT)) 
+    
+GerShp_inter_scNorm = [float(i)/trainingIntrResult_G for i in GerShep_inter_sc]
+Bull_inter_scNorm = [float(i)/trainingIntrResult_B for i in Bull_inter_sc]
+
+features_G['HISTCMP_INTERSECT'] = GerShep_inter_sc
+features_G['HISTCMP_INTERSECT_Norm'] = GerShp_inter_scNorm
+features_G['Image_Index'] = range(0, len(GerShep_imgs))
+
+features_B['HISTCMP_INTERSECT'] = Bull_inter_sc
+features_B['HISTCMP_INTERSECT_Norm'] = Bull_inter_scNorm
+features_B['Image_Index'] = range(0, len(Bulldog_imgs))
+
+G_intersec_norm_median= [np.median(i) for i in GerShp_inter_scNorm]
+B_intersec_norm_median= [np.median(i) for i in Bull_inter_scNorm]
 ```
 
+> Create a KNN model, fitting the model to training data and calculating the corresponding R^2 score
 
+```python
+X_trainG = features_G[['Image_Index']]
+y_trainG = features_G[['HISTCMP_INTERSECT_Norm']]
+
+X_trainB = features_B[['Image_Index']]
+y_trainB = features_B[['HISTCMP_INTERSECT_Norm']]
+
+def generate_KnnReg_r2 (X_train, y_train, k_max):
+    train_Scores = [] 
+
+    for k in range(1, k_max):
+        knnreg = KNeighborsRegressor(n_neighbors=k) # Create KNN model
+        knnreg.fit(X_train, y_train) # Fit the model to training data
+        score_train = knnreg.score(X_train, y_train) # Calculate R^2 score
+        train_Scores.append(score_train)
+
+    return train_Scores
+
+def generate_KnnReg (X_train, y_train, k):
+    knnreg = KNeighborsRegressor(n_neighbors=k)
+    knnreg.fit(X_train, y_train) # Fit the model to training data
+    
+    xgrid = np.linspace(np.min(X_train), np.max(X_train), 100)
+    prediction = knnreg.predict(xgrid.reshape(100,1))
+    
+    return prediction
+```
+
+```python
+gScores = generate_KnnReg_r2(X_trainG, y_trainG, 15)
+
+# Plot the R2 score for each knn
+plt.plot(range(1, 15), gScores,'o-')
+
+plt.xlabel('k')
+plt.ylabel('R-Squared')
+plt.title("KNN Intersection Scores for German Shepherd Images")
+plt.savefig('GerShep_knn_r2.png')
+plt.show()
+
+prediction = generate_KnnReg(X_trainG, y_trainG, 10)
+#xgrid = np.linspace(np.min(X_trainG), np.max(X_trainG), 100)
+
+plt.plot(X_trainG, y_trainG, 'o', label="Intersection Scores", alpha=0.5)
+plt.plot(xgrid, prediction, label="10-NN", color='red')
+
+plt.legend()
+plt.xlabel("Image #")
+plt.ylabel("Intersection Score")
+plt.title("KNN Intersection Scores for German Shepherd Images")
+plt.savefig('GerShep_Hist_Intersect_knn.png')
+
+plt.show()
+
+bScores = generate_KnnReg_r2(X_trainB, y_trainB, 15)
+
+# Plot the R2 score for each knn
+plt.plot(range(1, 15), bScores,'o-')
+
+plt.xlabel('k')
+plt.ylabel('R-Squared')
+plt.title("KNN Intersection Scores for Boston Bull Images")
+plt.savefig('Bull_knn_r2.png')
+plt.show()
+
+prediction = generate_KnnReg(X_trainB, y_trainB, 10)
+#xgrid = np.linspace(np.min(X_trainB), np.max(X_trainB), 100)
+
+plt.plot(X_trainB, y_trainB, 'o', label="Intersection Scores", alpha=0.5)
+plt.plot(xgrid, prediction, label="10-NN", color='red')
+
+plt.legend()
+plt.xlabel("Image #")
+plt.ylabel("Intersection Score")
+plt.title("KNN Intersection Scores for Boston Bull Images")
+plt.savefig('Bull_Hist_Intersect_knn.png')
+
+plt.show()
+```
 
 Boston Bull Knn R2           |  German Shepherd Knn R2
 :-------------------------:|:-------------------------:
@@ -94,6 +188,29 @@ Boston Bull Knn         |  German Shepherd Knn
 :-------------------------:|:-------------------------:
 ![Bull_Hist_Intersect_knn](/Images/Bull_Hist_Intersect_knn.png)  |  ![GerShep_Hist_Intersect_knn](/Images/GerShep_Hist_Intersect_knn.png)
 
+```python
+plt.hist( features_G['HISTCMP_INTERSECT_Norm'], bins=15, color='#539caf', alpha=1, label="German Shepherd Images" )
+plt.hist( features_B['HISTCMP_INTERSECT_Norm'], bins=15, color='#7663b0', alpha=0.7, label="Boston Bull Images" )
+plt.ylabel("Frequency")
+plt.xlabel("Intersection Score")
+plt.title("Color Histogram Intersection Scores for German Shepherd and Boston Bull Images")
+plt.legend()
+plt.savefig('GerBull_Hists.png')
+plt.show()
+
+ax = sns.distplot(features_G['HISTCMP_INTERSECT_Norm'], hist=True, kde=True, bins = 25, color = '#539caf')
+ax.set(xlabel = 'Histogram Intersection Score (1.0 = Perfect Fit)', ylabel = 'Frequency')
+ax.set_title("Frequency of German Shepherd Color Histogram Intersection Scores")
+fig = ax.get_figure()
+fig.savefig("GerShep_Hist_Intersect_Scores.png")
+plt.show()
+
+ax = sns.distplot(features_B['HISTCMP_INTERSECT_Norm'], hist=True, kde=True, bins = 25, color = '#7663b0')
+ax.set(xlabel = 'Histogram Intersection Score (1.0 = Perfect Fit)', ylabel = 'Frequency')
+ax.set_title("Frequency of Boston Bull Color Histogram Intersection Scores")
+fig = ax.get_figure()
+fig.savefig("Bull_Hist_Intersect_Scores.png")
+```
 
 | Boston Bull & German Shepherd Histogram  |
 |---|
