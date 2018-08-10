@@ -9,7 +9,7 @@ title: Models
 
 **Model Descriptions**
 
-## 0. Data Preparation
+## 2. Data Preparation
 ### 1) Reading and Cleaning Data
 
 In order to classify dog breeds, we leveraged the various models taught from class material. However, before perfoming classifications on each model, we first need to preprocess our input data. Our group quickly discovered that the image files imported all suffered noise distortion and irregular image dimensions. Thus to unify our photos, our team assigned a bouding box region to eliminate redundant background features, then cropped each photo such that soely the dog in question was visable. 
