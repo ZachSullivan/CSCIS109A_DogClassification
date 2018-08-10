@@ -36,6 +36,8 @@ data_df = DfAppend_Vals(data_df, imgPixMat, columnNames)
 data_df.head()
 ```
 
+![data_df_head](/Images/data_df_head.png)
+
 ### 2) Custom Functions
 ```python
 # Return a beautiful soup object from the provided file
