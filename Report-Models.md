@@ -91,6 +91,9 @@ PCA is a way to find the each feature’s variability ratio to overall features 
     plt.title("Top Two Principal Components")
     plt.legend();
 ```
+
+> The first two principal components explain 0.218 of the variance
+
 ![top_two_pca](/Images/Top_Two_Principal_Components.png)
 
 ```python
@@ -105,6 +108,7 @@ PCA is a way to find the each feature’s variability ratio to overall features 
     pca = PCA(num)
     pca.fit_transform(X)
 ```
+> The first 141 components explain 0.901 of variance
 
 ### 3) Cross-check
 
