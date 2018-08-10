@@ -268,13 +268,3 @@ Overall, the accuracy scores we obtained for this ensembling model were 0.712871
     
     accuracy_score_size_ens.append(accuracy_score(y_test, rtcv.predict(test)))
 ```
-
-## 2. Classification Varient 1
-
-### 1) Model 1
-
-### 2) Model 2
-
-### 3) Model 3
-
-### 4) Model 4
