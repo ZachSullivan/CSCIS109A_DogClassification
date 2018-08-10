@@ -9,7 +9,7 @@ title: Models
 
 **Model Descriptions**
 
-## 2. Data Preparation
+## 1. Data Preparation
 ### 1) Reading and Cleaning Data
 
 In order to classify dog breeds, we leveraged the various models taught from class material. However, before perfoming classifications on each model, we first need to preprocess our input data. Our group quickly discovered that the image files imported all suffered noise distortion and irregular image dimensions. Thus to unify our photos, our team assigned a bouding box region to eliminate redundant background features, then cropped each photo such that soely the dog in question was visable. 
@@ -152,7 +152,7 @@ def DfAppend_Vals(dataFrame, matrix, columns):
     return dataFrame
 ```
 
-## 1. Dog Breed Classification Models
+## 2. Dog Breed Classification Models
 
 In the following classification models, we determine success through the comparison of model accuracy scores. In an attempt to improve our model accuracies, we performed hyper-parameters tuning through either the gridsearchcv method, or manually. 
 
