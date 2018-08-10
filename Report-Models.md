@@ -13,7 +13,27 @@ title: Models
 ### 1) Reading and Cleaning Data
 
 ```python
+# The desired image output size, this will unify all images to this size
+size = 75
 
+# Obtain the pixel matrix and classification list from the requested images
+imgPixMat, imgClassMat = load_images_from_folder('./Dog Images/n02096585-Boston_bull', './Annotation/n02096585-Boston_bull/', size)
+
+# Generate column names for every pixel in our matrix
+columnNames = []
+
+# Note: the range is for a flattened pixel vector, therefore an image of size N has N Squared Red, Blue, Green pixels
+# .. Simply multiplying N Squared by 3 gets us our total pixel count for the image. 
+for i in range(0, (np.power(size,2)*3)):
+    columnNames.append(('Pixel '+str(i)))
+
+# Create a dataframe to store all pixel values
+data_df = pd.DataFrame(columns=columnNames)
+
+# Append our pixel values to the dataframe
+data_df = DfAppend_Vals(data_df, imgPixMat, columnNames)
+
+data_df.head()
 ```
 
 ### 2) Custom Functions
