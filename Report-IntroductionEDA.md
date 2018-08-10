@@ -188,6 +188,8 @@ Boston Bull Knn         |  German Shepherd Knn
 :-------------------------:|:-------------------------:
 ![Bull_Hist_Intersect_knn](/Images/Bull_Hist_Intersect_knn.png)  |  ![GerShep_Hist_Intersect_knn](/Images/GerShep_Hist_Intersect_knn.png)
 
+> Using a normalized score, our model indicates that a value of 1 is a perfect match between the two color histograms, while 0 suggests an inability to produce a match. In presenting our model findings, our group had not yet utilize a combination of PCA and fur color as potential classification features, this was later added to our final model. Finally, we can see that normalized color histogram intersection matching demonstrates moderately accurate intersection scoring for dog breed classification, with Boston Bull breeds out performing in comparison to German Shepherds.
+
 ```python
 plt.hist( features_G['HISTCMP_INTERSECT_Norm'], bins=15, color='#539caf', alpha=1, label="German Shepherd Images" )
 plt.hist( features_B['HISTCMP_INTERSECT_Norm'], bins=15, color='#7663b0', alpha=0.7, label="Boston Bull Images" )
@@ -219,7 +221,5 @@ fig.savefig("Bull_Hist_Intersect_Scores.png")
 Boston Bull Intersection Scores           |  German Shepherd Intersection Scores
 :-------------------------:|:-------------------------:
 ![Bull_Hist_Intersect_Scores](/Images/Bull_Hist_Intersect_Scores.png)  |  ![GerShep_Hist_Intersect_Scores](/Images/GerShep_Hist_Intersect_Scores.png)
-
-Our model using a normalized score, such that a value of 1 indicates a perfect match between the two color histograms, while 0 suggests an inability to produce a match. In presenting our model findings, our group had not yet utilize a combination of PCA and fur color as potential classification features, this was later added to our final model. Finally, we can see that normalized color histogram intersection matching demonstrates moderately accurate intersection scoring for dog breed classification, with Boston Bull breeds out performing in comparison to German Shepherds.
 
 ### 2)
