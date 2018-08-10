@@ -44,7 +44,7 @@ data_df.head()
 
 ![data_df_head](/Images/data_df_head.png)
 
-### 2) Principal Component Analysis(PCA)
+### 2) Principal Component Analysis (PCA)
 
 After resizing all image files, we attempted a reduction in the dimensions of our exogenous variables. We noted that a large number of exogenous variables can lead to overfitting and result in high dimensionality to some models. It should also be noted that we have produced exactly 16875 features, while the number of files processed are less than 1000. With this in mind, we reduced the dimension of our dataset using Principal Component Analysis (PCA).
 
@@ -216,6 +216,57 @@ In comparison to our previous Knn results, the accuracy score of decision tree c
     accuracy_score_size_t.append(accuracy_score(y_pred_tree, y_test))
     y_p_t = model.predict(x_train)
 
+```
+
+### 5) Random Forest Classification
+
+Random Forest Classification classifies data points based on the multiple of decision trees. The accuracy scores we received are 0.6831683168316832, 0.6633663366336634, and 0.6039603960396039. We noticed that using a Random Forest classification mode, generally produced better results (when compared against our decision tree classifier), this is agreeable with most of the decision tree classification results. However, since we ran our random forest model based on the tree classifiers, our accuracy scores also decreased as the size increased. We believe the same reasoning behind this issue (model depth accuracy) applies here as well.
+
+```python
+    rf = RandomForestClassifier()
+    param_grid = {'max_depth':[1,3,5,7,10,15], 'n_estimators':[5,10,15,20,25,30,35],'criterion':['gini', 'entropy']}
+    
+    gs = GridSearchCV(cv=5, param_grid=param_grid, estimator=rf)
+    gs.fit(x_train, y_train)
+    cc = gs.best_params_
+    
+    rf = RandomForestClassifier(max_depth=cc['max_depth'], n_estimators=cc['n_estimators'], criterion=cc['criterion'])
+    rf.fit(x_train, y_train)
+    
+    y_p_r = rf.predict_proba(x_train)[:,1]
+    y_pred_for = rf.predict(x_test)
+    y_pred_forr = rf.predict_proba(x_train)[:,1]
+
+    y_pred_forp = rf.predict_proba(x_test)[:,1]
+
+    accuracy_score_size_f.append(accuracy_score(y_pred_for, y_test))
+```
+
+### 6) Mixture of Classifiers Classification (Ensembling)
+
+Our final trial performed, utilized a combination of all prior results obtained. We ran a logistic regression model on the probabilities provided by the previous predictions, obtaining a highest score when image size corresponded to the dimension of 25 by 25 pixels. The ensemble model performed relatively well with a uniformed image size of 50 pixels. However, our model did not classifiy well when the image size was increased to a 75 by 75 pixel dimension. We conjectured that this pattern is due to the use of tree classifier, and random forest classifiers based on tree classifier. The worst score was earned by the K-nearest neighbors with size 50. 
+
+Overall, the accuracy scores we obtained for this ensembling model were 0.7128712871287128, 0.6831683168316832, and 0.594059405940594 respectively. These results is more or less natural, as we used a decision tree classification and random forest classification, which previously this pattern of decreasing accuracy scores as image size increased.
+
+```python
+    train_ = pd.DataFrame(y_pred_treet)
+    b_ = pd.DataFrame(y_pred_forr)
+    c_ = pd.DataFrame(y_pred_adaa)
+    
+    train_ = train_.join(b_, how='left', lsuffix='_')
+    train_ = train_.join(c_, how='left', lsuffix='_')
+    
+    test = pd.DataFrame(y_pred_treep)
+    b = pd.DataFrame(y_pred_forp)
+    c = pd.DataFrame(y_pred_adap)
+    
+    test = test.join(b,how='left', lsuffix='_')
+    test = test.join(c, how='left', lsuffix='_') 
+    
+    rtcv = LogisticRegressionCV(refit=True)
+    rtcv.fit(train_, y_train)
+    
+    accuracy_score_size_ens.append(accuracy_score(y_test, rtcv.predict(test)))
 ```
 
 ## 2. Classification Varient 1
