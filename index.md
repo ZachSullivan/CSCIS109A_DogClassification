@@ -4,6 +4,7 @@ title: Overview:
 
 
 ## CSCI S 109A Dog Classification Final Project
+# Group #17 Zachary Sullivan, Yuil Ahn, Samuel Akwei-Sekyere 
 
 ### Motivation:
 Identification of dog breeds is a difficult task. While experts and general public have difficulty in correctly identifying dog breeds, dog breeds in of themselves, have a wide variety of mixes and variations and as such are regulated to strict breed and group classifications. For instance, the Fédération Cynologique Internationale (FCI), classifies sheepdogs and cattle dogs to include German and Belgian shepherds, while excluding the Swiss Mountain Cattle dog.
