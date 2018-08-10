@@ -91,7 +91,7 @@ PCA is a way to find the each feature’s variability ratio to overall features 
     plt.title("Top Two Principal Components")
     plt.legend();
 ```
-![Top Two Principal Components](/Images/Top_Two_Principal_Components.png)
+![Top_Two_Principal Components](/Images/Top_Two_Principal Components.png)
 
 ```python
     pca = PCA()
