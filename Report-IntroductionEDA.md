@@ -140,7 +140,6 @@ plt.savefig('GerShep_knn_r2.png')
 plt.show()
 
 prediction = generate_KnnReg(X_trainG, y_trainG, 10)
-#xgrid = np.linspace(np.min(X_trainG), np.max(X_trainG), 100)
 
 plt.plot(X_trainG, y_trainG, 'o', label="Intersection Scores", alpha=0.5)
 plt.plot(xgrid, prediction, label="10-NN", color='red')
@@ -150,7 +149,6 @@ plt.xlabel("Image #")
 plt.ylabel("Intersection Score")
 plt.title("KNN Intersection Scores for German Shepherd Images")
 plt.savefig('GerShep_Hist_Intersect_knn.png')
-
 plt.show()
 
 bScores = generate_KnnReg_r2(X_trainB, y_trainB, 15)
@@ -165,7 +163,6 @@ plt.savefig('Bull_knn_r2.png')
 plt.show()
 
 prediction = generate_KnnReg(X_trainB, y_trainB, 10)
-#xgrid = np.linspace(np.min(X_trainB), np.max(X_trainB), 100)
 
 plt.plot(X_trainB, y_trainB, 'o', label="Intersection Scores", alpha=0.5)
 plt.plot(xgrid, prediction, label="10-NN", color='red')
