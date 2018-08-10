@@ -186,8 +186,11 @@ def DfAppend_Vals(dataFrame, matrix, columns):
 
 In the following classification models, we determine success through the comparison of model accuracy scores. In an attempt to improve our model accuracies, we performed hyper-parameters tuning through either the gridsearchcv method, or manually. 
 
-### 1) K-Nearest Neighbors
-K-Nearest Neighbors Classification (Knn) classifies data points based on the length-metrics from centroids. We set two neighbors, Euclidean metrics(by default) and ran the model on unifed image sizes of 25, 50, 75 pixel (identical width by height) dimensions. The accuracy scores obtained were 0.5445544554455446, 0.4752475247524752, and 0.6237623762376238 respetively. Our impression of these findings, is that as the image dimensions grow in size (thus the more information it contains) conversly produces a higher accuracy score, thus an increase in image size corresponds to an increase in model accuracy. This conclusion is reinforced by the accuracy scores obtained, showcasing that largest image dimensions demonstrated higher accuracy scores than one featuring smallest dimensions. 
+### 1) K-Nearest Neighbors (Single Image Size)
+K-Nearest Neighbors Classification (Knn) classifies data points based on the length-metrics from centroids. As a first pass model featuring Knn, we opted to scale all images to a initial size of 100 by 100 pixels.
+
+### 1) K-Nearest Neighbors (Varying Image Size)
+In this model, we set two neighbors, Euclidean metrics(by default) and ran the model on multiple unifed image sizes of 25, 50, 75 pixel (identical width by height) dimensions. The accuracy scores obtained were 0.5445544554455446, 0.4752475247524752, and 0.6237623762376238 respetively. Our impression of these findings, is that as the image dimensions grow in size (thus the more information it contains) conversly produces a higher accuracy score, thus an increase in image size corresponds to an increase in model accuracy. This conclusion is reinforced by the accuracy scores obtained, showcasing that largest image dimensions demonstrated higher accuracy scores than one featuring smallest dimensions. 
 
 ```python
     nei = knn(2)
