@@ -27,6 +27,8 @@ In plotting color histograms for both German Shepherd and Boston Bull breeds, we
 
 [VISUALIZATIONS]
 
+![Bull_knn_r2][Bull_knn_r2]
+
 [Bull_knn_r2]: /Images/EDA%20Images/Bull_knn_r2.png
 
 Our model using a normalized score, such that a value of 1 indicates a perfect match between the two color histograms, while 0 suggests an inability to produce a match. In presenting our model findings, our group had not yet utilize a combination of PCA and fur color as potential classification features, this was later added to our final model. Finally, we can see that normalized color histogram intersection matching demonstrates moderately accurate intersection scoring for dog breed classification, with Boston Bull breeds out performing in comparison to German Shepherds.
