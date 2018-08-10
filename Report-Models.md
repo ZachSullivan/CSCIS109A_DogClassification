@@ -12,7 +12,7 @@ title: Models
 ## 1. Data Preparation
 ### 1) Reading and Cleaning Data
 
-In order to classify dog breeds, we leveraged the various models taught from class material. However, before perfoming classifications on each model, we first need to preprocess our input data. Our group quickly discovered that the image files imported all suffered noise distortion and irregular image dimensions. Thus to unify our photos, our team assigned a bouding box region to eliminate redundant background features, then cropped each photo such that soely the dog in question was visable. 
+In order to classify dog breeds, we leveraged the various models taught from class material. However, before perfoming classifications on each model, we had to first preprocess our input data. Our group quickly discovered that the image files imported all suffered noise distortion and irregular image dimensions. Thus to unify our photos, our team assigned a bounding box region to eliminate redundant background features, then cropped each photo such that solely the dog in question was visible. 
 
 We then resized each image to a unified dimension specified by the user. As the unified image size was a variable subject to the user's discretion, we opted to run our classification models iteratevly in order to obtain the best model accuracy (in respect to universal image size). 
 
@@ -43,6 +43,36 @@ data_df.head()
 ```
 
 ![data_df_head](/Images/data_df_head.png)
+
+```python
+# Create a dataframe to store all classification values
+class_df = pd.DataFrame(columns=['Class'])
+
+class_df = DfAppend_Vals(class_df, imgClassMat, ['Class'])
+```
+
+We repeat the previous code to process and import the next breed of dogs
+```python
+imgPixMat, imgClassMat = load_images_from_folder('./Dog Images/n02106662-German_shepherd', './Annotation/n02106662-German_shepherd/')
+
+# Append our pixel values to the dataframe
+data_df = DfAppend_Vals(data_df, imgPixMat, columnNames)
+
+# Append our class values to the dataframe
+class_df = DfAppend_Vals(class_df, imgClassMat, ['Class'])
+```
+
+We finally append all breed dataframes together and shuffle the data.
+```python
+# Combine the pix DF and the Class Df
+out_df = pd.concat([data_df, class_df], axis=1)
+
+# Shuffle our dataframe
+out_df = shuffle(out_df)
+
+out_df.head()
+```
+![combined_data_df_head](/Images/combined_data_df.png)
 
 ### 2) Principal Component Analysis (PCA)
 
