@@ -194,7 +194,26 @@ Example Image Import without any Bounding Box         |  Scaled Import Image wit
 ![BullDog_import](/Images/BullDog_import.png)  |  ![BullDog_import_Scaled](/Images/BullDog_import_Scaled.png)
 
 In generating the corresponding dataframe for images of common 100 by 100 pixel size, results in a dataset with close to 30,000 features (PCA required, likely suffers from overfitting and high dimensionality).
+
 ![data_df_30000Dim](/Images/data_df_30000Dim.png) 
+
+```python
+for k in range(1, 10):
+    knnreg = knn(n_neighbors=k) # Create KNN model
+    knnreg.fit(X_train, y_train) # Fit the model to training data
+    score_train = knnreg.score(X_test, y_test) # Calculate R^2 score
+    train_Scores.append(score_train)
+
+plt.plot(range(1, 10), train_Scores,'o-')
+
+plt.xlabel('k')
+plt.ylabel('R-Squared')
+plt.title("KNN Intersection Scores for Two Breeds")
+plt.show()
+```
+
+![2Breeds_knn_r2](/Images/2Breeds_knn_r2.png) 
+
 
 
 ### 1) K-Nearest Neighbors (Varying Image Size)
