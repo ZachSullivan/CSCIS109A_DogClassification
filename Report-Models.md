@@ -193,6 +193,10 @@ Example Image Import without any Bounding Box         |  Scaled Import Image wit
 :-------------------------:|:-------------------------:
 ![BullDog_import](/Images/BullDog_import.png)  |  ![BullDog_import_Scaled](/Images/BullDog_import_Scaled.png)
 
+In generating the corresponding dataframe for images of common 100 by 100 pixel size, results in a dataset with close to 30,000 features (PCA required, likely suffers from overfitting and high dimensionality).
+![data_df_30000Dim](/Images/data_df_30000Dim.png) 
+
+
 ### 1) K-Nearest Neighbors (Varying Image Size)
 In this model, we set two neighbors, Euclidean metrics(by default) and ran the model on multiple unifed image sizes of 25, 50, 75 pixel (identical width by height) dimensions. The accuracy scores obtained were 0.5445544554455446, 0.4752475247524752, and 0.6237623762376238 respetively. Our impression of these findings, is that as the image dimensions grow in size (thus the more information it contains) conversly produces a higher accuracy score, thus an increase in image size corresponds to an increase in model accuracy. This conclusion is reinforced by the accuracy scores obtained, showcasing that largest image dimensions demonstrated higher accuracy scores than one featuring smallest dimensions. 
 
