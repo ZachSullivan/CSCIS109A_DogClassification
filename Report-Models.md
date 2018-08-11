@@ -7,8 +7,6 @@ title: Models
 *  
 {: toc}
 
-**Model Descriptions**
-
 ## 1. Data Preparation
 ### 1) Reading and Cleaning Data
 
