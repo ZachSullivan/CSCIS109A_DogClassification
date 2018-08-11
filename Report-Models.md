@@ -218,8 +218,7 @@ The accuracy scores obtained were 0.5445544554455446, 0.4752475247524752, and 0.
     y_pred_knn=nei.predict(x_test)
     accuracy_score_size_knn.append(accuracy_score(y_pred_knn, y_test))
 ```
-
-NEED VISUALIZATION OF MODEL ACCURACY VS IMAGE SIZE
+> Knn accuracy scores of: 0.5445544554455446, 0.4752475247524752, and 0.6237623762376238, using 2 nearest neighbours
 
 ### 3) AdaBoost Classification
 
@@ -240,6 +239,7 @@ AdaBoost Classification classifies data points by correcting previous errors. Mu
     y_pred_adap = ada.predict_proba(x_test)[:,1]
     accuracy_score_size_ada.append(accuracy_score(y_pred_ada, y_test))
 ```
+> AdaBoost accuracy scores of: 0.6039603960396039, 0.6534653465346535, and 0.6138613861386139, using 5-fold cross validation to determine n_estimators from a list of 10, 20, 30, 40, 50, 60
 
 ### 4) Decision Tree Classification
 
@@ -294,6 +294,8 @@ plt.legend()
 ```
 ![5Fold_CV_Acc_Depth_tree](/Images/5Fold_CV_Acc_Depth_tree.png) 
 
+> Decision Tree accuracy scores of: 0.6831683168316832, 0.6237623762376238, and 0.594059405940594, using 5-fold cross validation to determine depth from a depth list of 1, 3, 5, 7, 10, 15
+
 ### 5) Random Forest Classification
 
 Random Forest Classification classifies data points based on the multiple of decision trees. The accuracy scores we received are 0.6831683168316832, 0.6633663366336634, and 0.6039603960396039. We noticed that using a Random Forest classification mode, generally produced better results (when compared against our decision tree classifier), this is agreeable with most of the decision tree classification results. However, since we ran our random forest model based on the tree classifiers, our accuracy scores also decreased as the size increased. We believe the same reasoning behind this issue (model depth accuracy) applies here as well.
@@ -317,6 +319,7 @@ Random Forest Classification classifies data points based on the multiple of dec
 
     accuracy_score_size_f.append(accuracy_score(y_pred_for, y_test))
 ```
+> Random Forest accuracy scores of: 0.6831683168316832, 0.6633663366336634, and 0.6039603960396039, using 5-fold cross validation to determine depth from a depth list of 1, 3, 5, 7, 10, 15
 
 ### 6) Mixture of Classifiers Classification (Ensembling)
 
@@ -344,6 +347,7 @@ Overall, the accuracy scores we obtained for this ensembling model were 0.712871
     
     accuracy_score_size_ens.append(accuracy_score(y_test, rtcv.predict(test)))
 ```
+> Ensembled Logistic Regression Meta-model accuracy scores of: 0.7128712871287128, 0.6831683168316832, and 0.594059405940594
 
 # 3. Conclusion & Future Work
 
