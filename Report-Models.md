@@ -112,7 +112,7 @@ PCA is a way to find the each feature’s variability ratio to overall features 
 
 ### 3) Cross-check
 
-After applying PCA to the data set, we split the data into train and test sets, so we can obtain less biased result( i.e. less affected by overfitting phenomenon) by using test sets’ metrics. 
+After applying PCA to the data set, we split the data into train and test sets, so we can obtain less biased result( i.e. less affected by overfitting phenomenon) by using test set metrics. 
 
 ```python
     x_train, x_test, y_train, y_test = train_test_split(X, out_df.iloc[:,-1], test_size=0.3)
@@ -353,7 +353,7 @@ Overall, the accuracy scores we obtained for this ensembling model were 0.712871
 
 In this report we examined how a suite of classification models could be used to correctly identify between sub-dog breeds. Specifically, our group looked into the comparision of Boston Bulls and German Shepherd breeds. As originally noted, these breeds were chosen based on the basis of their comparatively distinct visual qualities. In aggregating our image dataset for both Boston Bull and German Shepherd images, our team performed a suite of preprocess methods. Addressing noise distortion and irregular image dimensions, we unified our photos through common image dimensionality, cropped using a bounding box algorithm. We finalized our data preparation process by generating a list of pixel features through flattening of each image's multi-dimensional pixel array.
 
-The predictions garnered from our model classifications varied according to the dimensionality of our images. We noted that our KNN regression model's accuracy improved as a direct correlation to the dimension growth for our images. Specifically that showcasing larger image dimensions demonstrated higher accuracy scores than images featuring smaller unified dimensions. While we initially expected this relationship to be mainted accross our remaining models, we found instead that our Decision Tree Classification, Random Forest Classification and Logistic Regression meta models performed in contrary to this expecation. We deduced that this was a possible result of insufficient depth range, or likely an issue with predictor size verus observasion count (such that the latter was smaller than the former).
+The predictions garnered from our model classifications varied according to the dimensionality of our images. We noted that our KNN regression model's accuracy improved as a direct correlation to the dimension growth for our images. Specifically that showcasing larger image dimensions demonstrated higher accuracy scores than images featuring smaller unified dimensions. While we initially expected this relationship to be mainted across our remaining models, we found instead that our Decision Tree Classification, Random Forest Classification and Logistic Regression meta models performed in contrary to this expecation. We deduced that this was a possible result of insufficient depth range, or likely an issue with predictor size verus observasion count (such that the latter was smaller than the former).
 
 ![CrossModel_Acc](/Images/CrossModel_Acc.jpg) 
 
