@@ -241,8 +241,6 @@ AdaBoost Classification classifies data points by correcting previous errors. Mu
     accuracy_score_size_ada.append(accuracy_score(y_pred_ada, y_test))
 ```
 
-NEED VISUALIZATION OF MODEL ACCURACY VS IMAGE SIZE
-
 ### 4) Decision Tree Classification
 
 Decision Tree Classification classifies data points based on the splitting principle, where the number of principles is bounded by the max_depth parameter we set (in which we used the argmax value from a range of 1, 3, 5, 7, 10, 15 depths). The accuracy scores obtained were 0.6831683168316832, 0.6237623762376238, and 0.594059405940594 with corresponding image sizes of 25, 50, 75 pixels. 
@@ -346,3 +344,4 @@ Overall, the accuracy scores we obtained for this ensembling model were 0.712871
     
     accuracy_score_size_ens.append(accuracy_score(y_test, rtcv.predict(test)))
 ```
+![CrossModel_Acc](/Images/CrossModel_Acc.jpg) 
