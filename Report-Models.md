@@ -80,6 +80,8 @@ After resizing all image files, we attempted a reduction in the dimensions of ou
 
 PCA is a way to find the each feature’s variability ratio to overall features variability. It extracts the feature which is the most variable among a given set and is orthogonal to the features already extracted. With the help of PCA, we can extract features that explain a certain level of variability. We used PCA to obtain features which explain more than 90% of the feature set variance. The number of features we gained is 141, which reduced the dimension enormously, compared to the original data of 16875 features.
 
+> It should be noted that as the image dimension size increases, so too do the number of features our PCA extracts. This is expected as an image of 100 by 100 pixels should produce close to 30,000 features (significantly larger than our 16,875 features). Our group specifically opted to reduce image dimension size as an effort to reduce the number of inital predictiors. 
+
 ```python
     pca = PCA(n_components=2)
     pca.fit(X_train)
