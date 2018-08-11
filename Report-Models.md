@@ -91,6 +91,9 @@ PCA is a way to find the each feature’s variability ratio to overall features 
     plt.title("Top Two Principal Components")
     plt.legend();
 ```
+
+> The first two principal components explain 0.218 of the variance
+
 ![top_two_pca](/Images/Top_Two_Principal_Components.png)
 
 ```python
@@ -105,6 +108,7 @@ PCA is a way to find the each feature’s variability ratio to overall features 
     pca = PCA(num)
     pca.fit_transform(X)
 ```
+> The first 141 components explain 0.901 of variance
 
 ### 3) Cross-check
 
@@ -266,6 +270,22 @@ In comparison to our previous Knn results, the accuracy score of decision tree c
     y_p_t = model.predict(x_train)
 
 ```
+
+```python
+crossVal_scs = np.reshape(crossVal_scs, (6, 3))
+
+plt.figure(figsize=(10,5))
+
+for idx, scores in enumerate(crossVal_scs):  
+    plt.plot([25, 50, 75], scores, linestyle='None', marker='o', label=("Depth", idx))
+
+
+plt.title("5-Fold CV Accuracy per Depth-of-tree, per Image sizes 25, 50, 75 Pixels")
+plt.xlabel("Image Sizes")
+plt.ylabel("Accuracy")
+plt.legend()
+```
+![5Fold_CV_Acc_Depth_tree](/Images/5Fold_CV_Acc_Depth_tree.png) 
 
 ### 5) Random Forest Classification
 
