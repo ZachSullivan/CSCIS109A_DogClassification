@@ -210,5 +210,3 @@ fig.savefig("Bull_Hist_Intersect_Scores.png")
 Boston Bull Intersection Scores           |  German Shepherd Intersection Scores
 :-------------------------:|:-------------------------:
 ![Bull_Hist_Intersect_Scores](/Images/Bull_Hist_Intersect_Scores.png)  |  ![GerShep_Hist_Intersect_Scores](/Images/GerShep_Hist_Intersect_Scores.png)
-
-### 2)
