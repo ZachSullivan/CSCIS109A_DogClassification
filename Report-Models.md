@@ -250,24 +250,33 @@ Decision Tree Classification classifies data points based on the splitting princ
 In comparison to our previous Knn results, the accuracy score of decision tree classification decreases as the size of the image file increases. One possible explanation is that our decrease in accuracy is the resulting effect of the number of max_depth parameter utilized, increasing range of depth may aleivitate this issue. Futhermore, while we have a significant amount of information to process, we have only limited splitting principles, and therefore the classification doesn’t use the information we have thoroughly.
 
 ```python
-    C = [1, 3, 5, 7, 10, 15]
-    tree_acc = []
+    crossVal_scs = []
+
+    for j in range(len(size)): 
     
-    for i in range(len(C)):
-        model = DecisionTreeClassifier(max_depth=C[i])
+        C = [1, 3, 5, 7, 10, 15]
+        tree_acc = []
+
+
+        for i in range(len(C)):
+            model = DecisionTreeClassifier(max_depth=C[i])
+            model.fit(x_train, y_train)
+            tree_acc.append(accuracy_score(y_test, model.predict(x_test)))
+
+            scores = cross_val_score(estimator=model, X=x_train, y=y_train, cv=5)
+            crossVal_scs.append(scores.mean())
+
+        C_star = C[np.argmax(tree_acc)]
+        model = DecisionTreeClassifier(max_depth=C_star)
         model.fit(x_train, y_train)
-        tree_acc.append(accuracy_score(y_test, model.predict(x_test)))
-    
-    C_star = C[np.argmax(tree_acc)]
-    model = DecisionTreeClassifier(max_depth=C_star)
-    model.fit(x_train, y_train)
-    
-    y_pred_treet = model.predict_proba(x_train)[:,1]
-    y_pred_tree = model.predict(x_test)
-    y_pred_treep = model.predict_proba(x_test)[:,1]
-    
-    accuracy_score_size_t.append(accuracy_score(y_pred_tree, y_test))
-    y_p_t = model.predict(x_train)
+
+        y_pred_treet = model.predict_proba(x_train)[:,1]
+        y_pred_tree = model.predict(x_test)
+        y_pred_treep = model.predict_proba(x_test)[:,1]
+
+        accuracy_score_size_t.append(accuracy_score(y_pred_tree, y_test))
+
+        y_p_t = model.predict(x_train)
 
 ```
 
