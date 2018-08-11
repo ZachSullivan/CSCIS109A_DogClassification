@@ -271,6 +271,22 @@ In comparison to our previous Knn results, the accuracy score of decision tree c
 
 ```
 
+```python
+crossVal_scs = np.reshape(crossVal_scs, (6, 3))
+
+plt.figure(figsize=(10,5))
+
+for idx, scores in enumerate(crossVal_scs):  
+    plt.plot([25, 50, 75], scores, linestyle='None', marker='o', label=("Depth", idx))
+
+
+plt.title("5-Fold CV Accuracy per Depth-of-tree, per Image sizes 25, 50, 75 Pixels")
+plt.xlabel("Image Sizes")
+plt.ylabel("Accuracy")
+plt.legend()
+```
+![5Fold_CV_Acc_Depth_tree](/Images/5Fold_CV_Acc_Depth_tree.png) 
+
 ### 5) Random Forest Classification
 
 Random Forest Classification classifies data points based on the multiple of decision trees. The accuracy scores we received are 0.6831683168316832, 0.6633663366336634, and 0.6039603960396039. We noticed that using a Random Forest classification mode, generally produced better results (when compared against our decision tree classifier), this is agreeable with most of the decision tree classification results. However, since we ran our random forest model based on the tree classifiers, our accuracy scores also decreased as the size increased. We believe the same reasoning behind this issue (model depth accuracy) applies here as well.
